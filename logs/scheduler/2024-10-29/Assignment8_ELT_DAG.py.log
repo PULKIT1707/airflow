@@ -1,0 +1,97 @@
+[2024-10-29T00:00:13.387+0000] {processor.py:161} INFO - Started process (PID=5336) to work on /opt/airflow/dags/Assignment8_ELT_DAG.py
+[2024-10-29T00:00:13.514+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.529+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.558+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.583+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.609+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.652+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.690+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.723+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.735+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.758+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.798+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.835+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.911+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:13.946+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.002+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.018+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.033+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.053+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.085+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.111+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.130+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.145+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.164+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.234+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.247+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.276+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.388+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.516+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.538+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.580+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.609+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.623+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.701+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.747+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.768+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.818+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.853+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.874+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.899+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.919+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.954+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:14.995+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:15.033+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:15.066+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:15.097+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:15.137+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:15.207+0000] {logging_mixin.py:188} WARNING - --- Logging error ---
+[2024-10-29T00:00:15.364+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-10-29T00:00:15.398+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1164, in emit
+    self.flush()
+[2024-10-29T00:00:15.405+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1144, in flush
+    self.stream.flush()
+[2024-10-29T00:00:15.406+0000] {logging_mixin.py:188} WARNING - OSError: [Errno 28] No space left on device
+[2024-10-29T00:00:15.420+0000] {logging_mixin.py:188} WARNING - 
+During handling of the above exception, another exception occurred:
+[2024-10-29T00:00:15.451+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-10-29T00:00:15.455+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1164, in emit
+    self.flush()
+[2024-10-29T00:00:15.459+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1144, in flush
+    self.stream.flush()
+[2024-10-29T00:00:15.464+0000] {logging_mixin.py:188} WARNING - OSError: [Errno 28] No space left on device
+[2024-10-29T00:00:15.468+0000] {logging_mixin.py:188} WARNING - 
+During handling of the above exception, another exception occurred:
+[2024-10-29T00:00:15.473+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-10-29T00:00:15.475+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1164, in emit
+    self.flush()
+[2024-10-29T00:00:15.475+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1144, in flush
+    self.stream.flush()
+[2024-10-29T00:00:15.483+0000] {logging_mixin.py:188} WARNING - OSError: [Errno 28] No space left on device
+[2024-10-29T00:00:15.486+0000] {logging_mixin.py:188} WARNING - 
+During handling of the above exception, another exception occurred:
+[2024-10-29T00:00:15.492+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-10-29T00:00:15.496+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1164, in emit
+    self.flush()
+[2024-10-29T00:00:15.497+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1144, in flush
+    self.stream.flush()
+[2024-10-29T00:00:15.498+0000] {logging_mixin.py:188} WARNING - OSError: [Errno 28] No space left on device
+[2024-10-29T00:00:15.499+0000] {logging_mixin.py:188} WARNING - 
+During handling of the above exception, another exception occurred:
+[2024-10-29T00:00:15.500+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-10-29T00:00:15.505+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1164, in emit
+    self.flush()
+[2024-10-29T00:00:15.509+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1144, in flush
+    self.stream.flush()
+[2024-10-29T00:00:15.513+0000] {logging_mixin.py:188} WARNING - OSError: [Errno 28] No space left on device
+[2024-10-29T00:00:15.521+0000] {logging_mixin.py:188} WARNING - 
+During handling of the above exception, another exception occurred:
+[2024-10-29T00:00:15.525+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-10-29T00:00:15.536+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1164, in emit
+    self.flush()
+[2024-10-29T00:00:15.544+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/logging/__init__.py", line 1144, in flush
+    self.stream.flush()
+[2024-10-29T00:00:15.556+0000] {logging_mixin.py:188} WARNING - OSError: [Errno 28] No space left on device
+[2024-10-29T00:00:15.560+0000] {logging_mixin.py:188} WARNING - 
+During handling of the above exception, another exception occurred:
+[2024-10-29T00:00:15.564+0000] {logging_mixin.py:188} 

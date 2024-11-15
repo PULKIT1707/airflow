@@ -1,0 +1,69 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: stock_db
+    schema: raw_data
+    description: "Source for stock market data including forecasts, prices, and predictions."
+    tables:
+      - name: stock_prices
+        identifier: stock_prices
+        description: "Table containing actual stock price information."
+        columns:
+          - name: date
+            description: "The date of the stock price data."
+          - name: open
+            description: "Opening price of the stock on the given date."
+          - name: high
+            description: "Highest price of the stock on the given date."
+          - name: low
+            description: "Lowest price of the stock on the given date."
+          - name: close
+            description: "Closing price of the stock on the given date."
+          - name: volume
+            description: "Trading volume of the stock on the given date."
+          - name: symbol
+            description: "The stock symbol (e.g., AAPL, QUAL)."
+
+models:
+  - name: moving_average
+    description: "A model that calculates the 7-day moving average of stock prices"
+    columns:
+      - name: date
+        description: "Date of the stock data"
+        data_tests:
+          - not_null
+      - name: symbol
+        description: "Stock symbol"
+        data_tests:
+          - not_null
+      - name: close
+        description: "Closing price of the stock"
+      - name: moving_average_7d
+        description: "7-day moving average of the closing stock prices"
+    # data_tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    #         - date
+    #         - symbol
+
+  - name: rsi
+    description: "A model that calculates the Relative Strength Index (RSI) for stock prices"
+    columns:
+      - name: date
+        description: "Date of the stock data"
+        data_tests:
+          - not_null
+      - name: symbol
+        description: "Stock symbol"
+        data_tests:
+          - not_null
+      - name: close
+        description: "Closing price of the stock"
+      - name: rsi
+        description: "Relative Strength Index (RSI) of the stock prices"
+    # data_tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    #         - date
+    #         - symbol

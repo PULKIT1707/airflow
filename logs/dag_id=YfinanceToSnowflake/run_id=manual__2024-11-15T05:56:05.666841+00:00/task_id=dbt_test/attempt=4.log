@@ -1,0 +1,66 @@
+[2024-11-15T06:07:03.088+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-15T06:07:03.623+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: YfinanceToSnowflake.dbt_test manual__2024-11-15T05:56:05.666841+00:00 [queued]>
+[2024-11-15T06:07:03.711+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: YfinanceToSnowflake.dbt_test manual__2024-11-15T05:56:05.666841+00:00 [queued]>
+[2024-11-15T06:07:03.728+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2024-11-15T06:07:03.847+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_test> on 2024-11-15 05:56:05.666841+00:00
+[2024-11-15T06:07:03.948+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'YfinanceToSnowflake', 'dbt_test', 'manual__2024-11-15T05:56:05.666841+00:00', '--job-id', '390', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmp2d6h8sjn']
+[2024-11-15T06:07:03.974+0000] {standard_task_runner.py:91} INFO - Job 390: Subtask dbt_test
+[2024-11-15T06:07:03.997+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=21348) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-15T06:07:04.022+0000] {standard_task_runner.py:63} INFO - Started process 21364 to run task
+[2024-11-15T06:07:04.276+0000] {task_command.py:426} INFO - Running <TaskInstance: YfinanceToSnowflake.dbt_test manual__2024-11-15T05:56:05.666841+00:00 [running]> on host 5bbe89177473
+[2024-11-15T06:07:06.663+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='YfinanceToSnowflake' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T05:56:05.666841+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T05:56:05.666841+00:00'
+[2024-11-15T06:07:06.677+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-15T06:07:06.679+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-11-15T06:07:06.682+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/stocks_mau && dbt test --profiles-dir /opt/***/stocks_mau']
+[2024-11-15T06:07:06.777+0000] {subprocess.py:86} INFO - Output:
+[2024-11-15T06:07:25.491+0000] {subprocess.py:93} INFO - [0m06:07:25  Running with dbt=1.8.7
+[2024-11-15T06:07:32.837+0000] {subprocess.py:93} INFO - [0m06:07:32  Registered adapter: snowflake=1.8.4
+[2024-11-15T06:07:35.556+0000] {subprocess.py:93} INFO - [0m06:07:35  Found 2 snapshots, 2 models, 6 data tests, 1 source, 459 macros
+[2024-11-15T06:07:35.568+0000] {subprocess.py:93} INFO - [0m06:07:35
+[2024-11-15T06:07:36.680+0000] {subprocess.py:93} INFO - [0m06:07:36  Concurrency: 1 threads (target='dev')
+[2024-11-15T06:07:36.682+0000] {subprocess.py:93} INFO - [0m06:07:36
+[2024-11-15T06:07:36.704+0000] {subprocess.py:93} INFO - [0m06:07:36  1 of 6 START test dbt_utils_unique_combination_of_columns_moving_average_date__symbol  [RUN]
+[2024-11-15T06:07:36.744+0000] {subprocess.py:93} INFO - [0m06:07:36  1 of 6 ERROR dbt_utils_unique_combination_of_columns_moving_average_date__symbol  [[31mERROR[0m in 0.04s]
+[2024-11-15T06:07:36.751+0000] {subprocess.py:93} INFO - [0m06:07:36  2 of 6 START test dbt_utils_unique_combination_of_columns_rsi_date__symbol ..... [RUN]
+[2024-11-15T06:07:36.777+0000] {subprocess.py:93} INFO - [0m06:07:36  2 of 6 ERROR dbt_utils_unique_combination_of_columns_rsi_date__symbol .......... [[31mERROR[0m in 0.02s]
+[2024-11-15T06:07:36.783+0000] {subprocess.py:93} INFO - [0m06:07:36  3 of 6 START test not_null_moving_average_date ................................. [RUN]
+[2024-11-15T06:07:37.665+0000] {subprocess.py:93} INFO - [0m06:07:37  3 of 6 PASS not_null_moving_average_date ....................................... [[32mPASS[0m in 0.88s]
+[2024-11-15T06:07:37.681+0000] {subprocess.py:93} INFO - [0m06:07:37  4 of 6 START test not_null_moving_average_symbol ............................... [RUN]
+[2024-11-15T06:07:38.534+0000] {subprocess.py:93} INFO - [0m06:07:38  4 of 6 PASS not_null_moving_average_symbol ..................................... [[32mPASS[0m in 0.85s]
+[2024-11-15T06:07:38.598+0000] {subprocess.py:93} INFO - [0m06:07:38  5 of 6 START test not_null_rsi_date ............................................ [RUN]
+[2024-11-15T06:07:39.787+0000] {subprocess.py:93} INFO - [0m06:07:39  5 of 6 PASS not_null_rsi_date .................................................. [[32mPASS[0m in 1.18s]
+[2024-11-15T06:07:39.801+0000] {subprocess.py:93} INFO - [0m06:07:39  6 of 6 START test not_null_rsi_symbol .......................................... [RUN]
+[2024-11-15T06:07:40.878+0000] {subprocess.py:93} INFO - [0m06:07:40  6 of 6 PASS not_null_rsi_symbol ................................................ [[32mPASS[0m in 1.07s]
+[2024-11-15T06:07:40.909+0000] {subprocess.py:93} INFO - [0m06:07:40
+[2024-11-15T06:07:40.911+0000] {subprocess.py:93} INFO - [0m06:07:40  Finished running 6 data tests in 0 hours 0 minutes and 5.33 seconds (5.33s).
+[2024-11-15T06:07:41.200+0000] {subprocess.py:93} INFO - [0m06:07:41
+[2024-11-15T06:07:41.204+0000] {subprocess.py:93} INFO - [0m06:07:41  [31mCompleted with 2 errors and 0 warnings:[0m
+[2024-11-15T06:07:41.227+0000] {subprocess.py:93} INFO - [0m06:07:41
+[2024-11-15T06:07:41.233+0000] {subprocess.py:93} INFO - [0m06:07:41    Compilation Error in test dbt_utils_unique_combination_of_columns_moving_average_date__symbol (models/input/schema.yml)
+[2024-11-15T06:07:41.247+0000] {subprocess.py:93} INFO -   'dbt_utils' is undefined. This can happen when calling a macro that does not exist. Check for typos and/or install package dependencies with "dbt deps".
+[2024-11-15T06:07:41.248+0000] {subprocess.py:93} INFO - [0m06:07:41
+[2024-11-15T06:07:41.251+0000] {subprocess.py:93} INFO - [0m06:07:41    Compilation Error in test dbt_utils_unique_combination_of_columns_rsi_date__symbol (models/input/schema.yml)
+[2024-11-15T06:07:41.255+0000] {subprocess.py:93} INFO -   'dbt_utils' is undefined. This can happen when calling a macro that does not exist. Check for typos and/or install package dependencies with "dbt deps".
+[2024-11-15T06:07:41.259+0000] {subprocess.py:93} INFO - [0m06:07:41
+[2024-11-15T06:07:41.263+0000] {subprocess.py:93} INFO - [0m06:07:41  Done. PASS=4 WARN=0 ERROR=2 SKIP=0 TOTAL=6
+[2024-11-15T06:07:43.227+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-11-15T06:07:43.229+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-15T06:07:43.258+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-11-15T06:07:43.272+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=YfinanceToSnowflake, task_id=dbt_test, run_id=manual__2024-11-15T05:56:05.666841+00:00, execution_date=20241115T055605, start_date=20241115T060703, end_date=20241115T060743
+[2024-11-15T06:07:43.312+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 390 for task dbt_test (Bash command failed. The command returned a non-zero exit code 1.; 21364)
+[2024-11-15T06:07:43.369+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-15T06:07:43.441+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-15T06:07:43.451+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

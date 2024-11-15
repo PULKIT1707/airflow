@@ -1,0 +1,21 @@
+[2024-10-24T19:47:17.327+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-24T19:47:18.230+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Assignment8_ETL_DAG.createBlob manual__2024-10-24T19:46:52.815149+00:00 [queued]>
+[2024-10-24T19:47:18.469+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Assignment8_ETL_DAG.createBlob manual__2024-10-24T19:46:52.815149+00:00 [queued]>
+[2024-10-24T19:47:18.477+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-10-24T19:47:18.691+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): createBlob> on 2024-10-24 19:46:52.815149+00:00
+[2024-10-24T19:47:18.904+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2331) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-24T19:47:18.914+0000] {standard_task_runner.py:63} INFO - Started process 2383 to run task
+[2024-10-24T19:47:18.796+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'Assignment8_ETL_DAG', 'createBlob', 'manual__2024-10-24T19:46:52.815149+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/Assignment8_ETL_DAG.py', '--cfg-path', '/tmp/tmpx90ajqkq']
+[2024-10-24T19:47:18.916+0000] {standard_task_runner.py:91} INFO - Job 21: Subtask createBlob
+[2024-10-24T19:47:21.781+0000] {task_command.py:426} INFO - Running <TaskInstance: Assignment8_ETL_DAG.createBlob manual__2024-10-24T19:46:52.815149+00:00 [running]> on host d99256b0cb87
+[2024-10-24T19:47:24.031+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Assignment8_ETL_DAG' AIRFLOW_CTX_TASK_ID='createBlob' AIRFLOW_CTX_EXECUTION_DATE='2024-10-24T19:46:52.815149+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-24T19:46:52.815149+00:00'
+[2024-10-24T19:47:24.094+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-24T19:47:24.296+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.0, Python Version: 3.12.3, Platform: Linux-6.10.4-linuxkit-x86_64-with-glibc2.36
+[2024-10-24T19:47:24.307+0000] {connection.py:1239} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-10-24T19:48:00.765+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError("bad handshake: SysCallError(-1, 'Unexpected EOF')"))': /session/v1/login-request?request_id=be64486c-69a8-481c-8b5e-f51a0623e480&databaseName=dev&schemaName=raw_data&warehouse=stock_warehouse&request_guid=619d0a07-8ef0-43df-a47e-7f4cc5efb7f2
+[2024-10-24T19:48:02.943+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-10-24T19:48:02.965+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-10-24T19:48:02.973+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-24T19:48:03.061+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=Assignment8_ETL_DAG, task_id=createBlob, run_id=manual__2024-10-24T19:46:52.815149+00:00, execution_date=20241024T194652, start_date=20241024T194718, end_date=20241024T194803
+[2024-10-24T19:48:03.390+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-24T19:48:03.609+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

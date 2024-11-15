@@ -1,0 +1,29 @@
+[2024-11-12T02:09:32.383+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T02:09:32.644+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: StockForcastingNext7WorkingDaysTodayOnward.loadForecastToSnowflake manual__2024-11-12T02:07:17.027838+00:00 [queued]>
+[2024-11-12T02:09:32.674+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: StockForcastingNext7WorkingDaysTodayOnward.loadForecastToSnowflake manual__2024-11-12T02:07:17.027838+00:00 [queued]>
+[2024-11-12T02:09:32.691+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-11-12T02:09:32.737+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): loadForecastToSnowflake> on 2024-11-12 02:07:17.027838+00:00
+[2024-11-12T02:09:32.797+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'StockForcastingNext7WorkingDaysTodayOnward', 'loadForecastToSnowflake', 'manual__2024-11-12T02:07:17.027838+00:00', '--job-id', '121', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmplz3q9d92']
+[2024-11-12T02:09:32.814+0000] {standard_task_runner.py:91} INFO - Job 121: Subtask loadForecastToSnowflake
+[2024-11-12T02:09:32.818+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=7791) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-12T02:09:32.824+0000] {standard_task_runner.py:63} INFO - Started process 7825 to run task
+[2024-11-12T02:09:36.854+0000] {task_command.py:426} INFO - Running <TaskInstance: StockForcastingNext7WorkingDaysTodayOnward.loadForecastToSnowflake manual__2024-11-12T02:07:17.027838+00:00 [running]> on host d99256b0cb87
+[2024-11-12T02:09:39.211+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='StockForcastingNext7WorkingDaysTodayOnward' AIRFLOW_CTX_TASK_ID='loadForecastToSnowflake' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T02:07:17.027838+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T02:07:17.027838+00:00'
+[2024-11-12T02:09:39.243+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T02:09:39.420+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-11-12T02:09:39.422+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.0, Python Version: 3.12.3, Platform: Linux-6.10.11-linuxkit-x86_64-with-glibc2.36
+[2024-11-12T02:09:39.449+0000] {connection.py:1239} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-11-12T02:09:41.806+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:42.731+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:43.418+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:44.216+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:44.740+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:45.646+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:46.673+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:47.413+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T02:09:47.421+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T02:09:47.423+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T02:09:47.687+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=StockForcastingNext7WorkingDaysTodayOnward, task_id=loadForecastToSnowflake, run_id=manual__2024-11-12T02:07:17.027838+00:00, execution_date=20241112T020717, start_date=20241112T020932, end_date=20241112T020947
+[2024-11-12T02:09:48.008+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T02:09:48.193+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T02:09:48.216+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

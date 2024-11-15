@@ -1,0 +1,45 @@
+[2024-11-12T05:01:40.599+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T05:01:40.738+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_price_analytics_extended.run_dbt_moving_average_QCOM manual__2024-11-12T05:00:17.412384+00:00 [queued]>
+[2024-11-12T05:01:40.786+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_price_analytics_extended.run_dbt_moving_average_QCOM manual__2024-11-12T05:00:17.412384+00:00 [queued]>
+[2024-11-12T05:01:40.787+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T05:01:40.821+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): run_dbt_moving_average_QCOM> on 2024-11-12 05:00:17.412384+00:00
+[2024-11-12T05:01:40.843+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_price_analytics_extended', 'run_dbt_moving_average_QCOM', 'manual__2024-11-12T05:00:17.412384+00:00', '--job-id', '154', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmpvzolatt7']
+[2024-11-12T05:01:40.852+0000] {standard_task_runner.py:91} INFO - Job 154: Subtask run_dbt_moving_average_QCOM
+[2024-11-12T05:01:40.843+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=13757) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-12T05:01:40.857+0000] {standard_task_runner.py:63} INFO - Started process 13793 to run task
+[2024-11-12T05:01:41.015+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_price_analytics_extended.run_dbt_moving_average_QCOM manual__2024-11-12T05:00:17.412384+00:00 [running]> on host d99256b0cb87
+[2024-11-12T05:01:41.306+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_price_analytics_extended' AIRFLOW_CTX_TASK_ID='run_dbt_moving_average_QCOM' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T05:00:17.412384+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T05:00:17.412384+00:00'
+[2024-11-12T05:01:41.310+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T05:01:41.321+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T05:01:41.323+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Conn_Forcasting_DagFile.py", line 87, in run_dbt_command
+    subprocess.run(["dbt", "run", "--models", model_name], check=True)
+  File "/usr/local/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/local/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+PermissionError: [Errno 13] Permission denied: 'dbt'
+[2024-11-12T05:01:41.526+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=stock_price_analytics_extended, task_id=run_dbt_moving_average_QCOM, run_id=manual__2024-11-12T05:00:17.412384+00:00, execution_date=20241112T050017, start_date=20241112T050140, end_date=20241112T050141
+[2024-11-12T05:01:41.567+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 154 for task run_dbt_moving_average_QCOM ([Errno 13] Permission denied: 'dbt'; 13793)
+[2024-11-12T05:01:41.625+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T05:01:41.709+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T05:01:41.713+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

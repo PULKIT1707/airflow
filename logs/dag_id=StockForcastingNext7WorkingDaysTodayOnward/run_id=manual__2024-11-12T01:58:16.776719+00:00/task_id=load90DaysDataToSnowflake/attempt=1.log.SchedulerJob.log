@@ -1,0 +1,1 @@
+[2024-11-12T01:59:21.099+0000] {task_context_logger.py:104} ERROR - Executor reports task instance <TaskInstance: StockForcastingNext7WorkingDaysTodayOnward.load90DaysDataToSnowflake manual__2024-11-12T01:58:16.776719+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

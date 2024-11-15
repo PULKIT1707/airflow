@@ -1,0 +1,13 @@
+stocks_mau:
+  outputs:
+    dev:
+      account: "{{ env_var('DBT_ACCOUNT') }}"
+      database: "{{ env_var('DBT_DATABASE') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      threads: 1
+      schema: analytics
+      type: snowflake
+      user: "{{ env_var('DBT_USER') }}"
+      warehouse: "compute_wh"
+  target: dev

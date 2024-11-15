@@ -1,0 +1,37 @@
+[2024-11-15T05:57:44.561+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-15T05:57:44.625+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: YfinanceToSnowflake.dbt_run manual__2024-11-15T05:56:05.666841+00:00 [queued]>
+[2024-11-15T05:57:44.660+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: YfinanceToSnowflake.dbt_run manual__2024-11-15T05:56:05.666841+00:00 [queued]>
+[2024-11-15T05:57:44.668+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-11-15T05:57:44.934+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run> on 2024-11-15 05:56:05.666841+00:00
+[2024-11-15T05:57:44.969+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=20864) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-15T05:57:44.977+0000] {standard_task_runner.py:63} INFO - Started process 20867 to run task
+[2024-11-15T05:57:44.982+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'YfinanceToSnowflake', 'dbt_run', 'manual__2024-11-15T05:56:05.666841+00:00', '--job-id', '385', '--raw', '--subdir', 'DAGS_FOLDER/yfinance_to_snowflake.py', '--cfg-path', '/tmp/tmpy_r4nkiq']
+[2024-11-15T05:57:44.989+0000] {standard_task_runner.py:91} INFO - Job 385: Subtask dbt_run
+[2024-11-15T05:57:45.286+0000] {task_command.py:426} INFO - Running <TaskInstance: YfinanceToSnowflake.dbt_run manual__2024-11-15T05:56:05.666841+00:00 [running]> on host 5bbe89177473
+[2024-11-15T05:57:45.595+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='YfinanceToSnowflake' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T05:56:05.666841+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T05:56:05.666841+00:00'
+[2024-11-15T05:57:45.599+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-15T05:57:45.607+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-11-15T05:57:45.613+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/stocks_mau && dbt run --profiles-dir /opt/***/stocks_mau']
+[2024-11-15T05:57:45.630+0000] {subprocess.py:86} INFO - Output:
+[2024-11-15T05:57:55.517+0000] {subprocess.py:93} INFO - [0m05:57:55  Running with dbt=1.8.7
+[2024-11-15T05:58:00.031+0000] {subprocess.py:93} INFO - [0m05:58:00  Registered adapter: snowflake=1.8.4
+[2024-11-15T05:58:10.914+0000] {subprocess.py:93} INFO - [0m05:58:10  Found 2 snapshots, 2 models, 6 data tests, 1 source, 459 macros
+[2024-11-15T05:58:10.965+0000] {subprocess.py:93} INFO - [0m05:58:10
+[2024-11-15T05:58:13.844+0000] {subprocess.py:93} INFO - [0m05:58:13  Concurrency: 1 threads (target='dev')
+[2024-11-15T05:58:13.849+0000] {subprocess.py:93} INFO - [0m05:58:13
+[2024-11-15T05:58:13.965+0000] {subprocess.py:93} INFO - [0m05:58:13  1 of 2 START sql incremental model analytics.moving_average .................... [RUN]
+[2024-11-15T05:58:18.946+0000] {subprocess.py:93} INFO - [0m05:58:18  1 of 2 OK created sql incremental model analytics.moving_average ............... [[32mSUCCESS 0[0m in 4.77s]
+[2024-11-15T05:58:19.292+0000] {subprocess.py:93} INFO - [0m05:58:18  2 of 2 START sql incremental model analytics.rsi ............................... [RUN]
+[2024-11-15T05:58:22.010+0000] {subprocess.py:93} INFO - [0m05:58:22  2 of 2 OK created sql incremental model analytics.rsi .......................... [[32mSUCCESS 0[0m in 3.17s]
+[2024-11-15T05:58:22.024+0000] {subprocess.py:93} INFO - [0m05:58:22
+[2024-11-15T05:58:22.026+0000] {subprocess.py:93} INFO - [0m05:58:22  Finished running 2 incremental models in 0 hours 0 minutes and 11.03 seconds (11.03s).
+[2024-11-15T05:58:22.177+0000] {subprocess.py:93} INFO - [0m05:58:22
+[2024-11-15T05:58:22.178+0000] {subprocess.py:93} INFO - [0m05:58:22  [32mCompleted successfully[0m
+[2024-11-15T05:58:22.180+0000] {subprocess.py:93} INFO - [0m05:58:22
+[2024-11-15T05:58:22.182+0000] {subprocess.py:93} INFO - [0m05:58:22  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[2024-11-15T05:58:25.774+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-11-15T05:58:25.779+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-15T05:58:25.915+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=YfinanceToSnowflake, task_id=dbt_run, run_id=manual__2024-11-15T05:56:05.666841+00:00, execution_date=20241115T055605, start_date=20241115T055744, end_date=20241115T055825
+[2024-11-15T05:58:26.036+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-15T05:58:26.148+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-15T05:58:26.153+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

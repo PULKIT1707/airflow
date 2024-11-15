@@ -1,0 +1,37 @@
+[2024-11-14T19:50:08.462+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-14T19:50:08.542+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_price_analytics_extended.run_all_dbt_models manual__2024-11-14T19:29:53.168834+00:00 [queued]>
+[2024-11-14T19:50:08.575+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_price_analytics_extended.run_all_dbt_models manual__2024-11-14T19:29:53.168834+00:00 [queued]>
+[2024-11-14T19:50:08.576+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-11-14T19:50:08.653+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): run_all_dbt_models> on 2024-11-14 19:29:53.168834+00:00
+[2024-11-14T19:50:08.689+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_price_analytics_extended', 'run_all_dbt_models', 'manual__2024-11-14T19:29:53.168834+00:00', '--job-id', '249', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmpg45alo63']
+[2024-11-14T19:50:08.696+0000] {standard_task_runner.py:91} INFO - Job 249: Subtask run_all_dbt_models
+[2024-11-14T19:50:08.722+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3904) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-14T19:50:08.729+0000] {standard_task_runner.py:63} INFO - Started process 3929 to run task
+[2024-11-14T19:50:08.831+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_price_analytics_extended.run_all_dbt_models manual__2024-11-14T19:29:53.168834+00:00 [running]> on host 885fea738fe5
+[2024-11-14T19:50:09.123+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_price_analytics_extended' AIRFLOW_CTX_TASK_ID='run_all_dbt_models' AIRFLOW_CTX_EXECUTION_DATE='2024-11-14T19:29:53.168834+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-14T19:29:53.168834+00:00'
+[2024-11-14T19:50:09.131+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-14T19:50:09.134+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-11-14T19:50:09.136+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/stocks_mau && dbt run']
+[2024-11-14T19:50:09.216+0000] {subprocess.py:86} INFO - Output:
+[2024-11-14T19:50:09.219+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: dbt: command not found
+[2024-11-14T19:50:09.221+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2024-11-14T19:50:09.224+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-14T19:50:09.279+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2024-11-14T19:50:09.293+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=stock_price_analytics_extended, task_id=run_all_dbt_models, run_id=manual__2024-11-14T19:29:53.168834+00:00, execution_date=20241114T192953, start_date=20241114T195008, end_date=20241114T195009
+[2024-11-14T19:50:09.328+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 249 for task run_all_dbt_models (Bash command failed. The command returned a non-zero exit code 127.; 3929)
+[2024-11-14T19:50:09.368+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-14T19:50:09.395+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-14T19:50:09.399+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

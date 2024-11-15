@@ -1,0 +1,22 @@
+[2024-10-24T19:47:14.120+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-24T19:47:14.917+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Assignment8_ETL_DAG.createUserSessionChannel scheduled__2024-10-23T00:00:00+00:00 [queued]>
+[2024-10-24T19:47:15.076+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Assignment8_ETL_DAG.createUserSessionChannel scheduled__2024-10-23T00:00:00+00:00 [queued]>
+[2024-10-24T19:47:15.090+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-10-24T19:47:15.355+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): createUserSessionChannel> on 2024-10-23 00:00:00+00:00
+[2024-10-24T19:47:15.802+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'Assignment8_ETL_DAG', 'createUserSessionChannel', 'scheduled__2024-10-23T00:00:00+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/Assignment8_ETL_DAG.py', '--cfg-path', '/tmp/tmp6der3zop']
+[2024-10-24T19:47:15.932+0000] {standard_task_runner.py:91} INFO - Job 17: Subtask createUserSessionChannel
+[2024-10-24T19:47:15.978+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2329) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-10-24T19:47:16.007+0000] {standard_task_runner.py:63} INFO - Started process 2375 to run task
+[2024-10-24T19:47:17.187+0000] {task_command.py:426} INFO - Running <TaskInstance: Assignment8_ETL_DAG.createUserSessionChannel scheduled__2024-10-23T00:00:00+00:00 [running]> on host d99256b0cb87
+[2024-10-24T19:47:18.601+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='Assignment8_ETL_DAG' AIRFLOW_CTX_TASK_ID='createUserSessionChannel' AIRFLOW_CTX_EXECUTION_DATE='2024-10-23T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-10-23T00:00:00+00:00'
+[2024-10-24T19:47:18.621+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-24T19:47:18.631+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.0, Python Version: 3.12.3, Platform: Linux-6.10.4-linuxkit-x86_64-with-glibc2.36
+[2024-10-24T19:47:18.647+0000] {connection.py:1239} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-10-24T19:47:54.702+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError("bad handshake: SysCallError(-1, 'Unexpected EOF')"))': /session/v1/login-request?request_id=76c84835-d38b-444d-903f-c330ea163af3&databaseName=dev&schemaName=raw_data&warehouse=stock_warehouse&request_guid=e4471f7c-8f4f-4a8f-baec-d376d5bc5d6c
+[2024-10-24T19:47:56.881+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-10-24T19:47:56.883+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-10-24T19:47:56.887+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-24T19:47:56.923+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=Assignment8_ETL_DAG, task_id=createUserSessionChannel, run_id=scheduled__2024-10-23T00:00:00+00:00, execution_date=20241023T000000, start_date=20241024T194714, end_date=20241024T194756
+[2024-10-24T19:47:57.049+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-24T19:47:57.232+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-24T19:47:57.245+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

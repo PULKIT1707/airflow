@@ -1,0 +1,71 @@
+[2024-11-12T01:37:45.559+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T01:37:45.637+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: YfinanceToSnowflake.load manual__2024-11-12T01:37:27.120835+00:00 [queued]>
+[2024-11-12T01:37:45.659+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: YfinanceToSnowflake.load manual__2024-11-12T01:37:27.120835+00:00 [queued]>
+[2024-11-12T01:37:45.661+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-11-12T01:37:45.703+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load> on 2024-11-12 01:37:27.120835+00:00
+[2024-11-12T01:37:45.723+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'YfinanceToSnowflake', 'load', 'manual__2024-11-12T01:37:27.120835+00:00', '--job-id', '86', '--raw', '--subdir', 'DAGS_FOLDER/yfinance_to_snowflake.py', '--cfg-path', '/tmp/tmp8q_babbr']
+[2024-11-12T01:37:45.730+0000] {standard_task_runner.py:91} INFO - Job 86: Subtask load
+[2024-11-12T01:37:45.731+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=6090) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-12T01:37:45.736+0000] {standard_task_runner.py:63} INFO - Started process 6106 to run task
+[2024-11-12T01:37:45.861+0000] {task_command.py:426} INFO - Running <TaskInstance: YfinanceToSnowflake.load manual__2024-11-12T01:37:27.120835+00:00 [running]> on host d99256b0cb87
+[2024-11-12T01:37:47.345+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='YfinanceToSnowflake' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T01:37:27.120835+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T01:37:27.120835+00:00'
+[2024-11-12T01:37:47.383+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T01:37:47.475+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-11-12T01:37:47.492+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.0, Python Version: 3.12.3, Platform: Linux-6.10.11-linuxkit-x86_64-with-glibc2.36
+[2024-11-12T01:37:47.508+0000] {connection.py:1239} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-11-12T01:37:49.646+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T01:37:49.804+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T01:37:50.621+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-12T01:37:50.634+0000] {logging_mixin.py:188} INFO - 'Open'
+[2024-11-12T01:37:50.670+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T01:37:50.690+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3791, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 152, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 181, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Open'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/yfinance_to_snowflake.py", line 136, in load
+    raise e
+  File "/opt/airflow/dags/yfinance_to_snowflake.py", line 129, in load
+    '{date}', {d['Open'][0]}, {d['Close'][0]}, {d['High'][0]}, {d['Low'][0]}, {d['Volume'][0]}, '{symbol}')"""
+               ~^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 3893, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3798, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Open'
+[2024-11-12T01:37:51.101+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=YfinanceToSnowflake, task_id=load, run_id=manual__2024-11-12T01:37:27.120835+00:00, execution_date=20241112T013727, start_date=20241112T013745, end_date=20241112T013751
+[2024-11-12T01:37:51.203+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 86 for task load ('Open'; 6106)
+[2024-11-12T01:37:51.400+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T01:37:51.496+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T01:37:51.501+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

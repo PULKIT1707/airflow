@@ -1,0 +1,5 @@
+statsmodels 
+yfinance 
+apache-airflow-providers-snowflake 
+snowflake-connector-python
+dbt-snowflake

@@ -1,0 +1,25 @@
+[2024-11-15T01:14:37.550+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-15T01:14:37.776+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_price_analytics_extended.predictNext7Days scheduled__2024-11-14T00:00:00+00:00 [queued]>
+[2024-11-15T01:14:37.831+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_price_analytics_extended.predictNext7Days scheduled__2024-11-14T00:00:00+00:00 [queued]>
+[2024-11-15T01:14:37.836+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-15T01:14:38.073+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): predictNext7Days> on 2024-11-14 00:00:00+00:00
+[2024-11-15T01:14:38.118+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=7941) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-15T01:14:38.118+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_price_analytics_extended', 'predictNext7Days', 'scheduled__2024-11-14T00:00:00+00:00', '--job-id', '323', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmpognd75hc']
+[2024-11-15T01:14:38.125+0000] {standard_task_runner.py:91} INFO - Job 323: Subtask predictNext7Days
+[2024-11-15T01:14:38.125+0000] {standard_task_runner.py:63} INFO - Started process 7962 to run task
+[2024-11-15T01:14:38.711+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_price_analytics_extended.predictNext7Days scheduled__2024-11-14T00:00:00+00:00 [running]> on host 5bbe89177473
+[2024-11-15T01:14:40.872+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_price_analytics_extended' AIRFLOW_CTX_TASK_ID='predictNext7Days' AIRFLOW_CTX_EXECUTION_DATE='2024-11-14T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-14T00:00:00+00:00'
+[2024-11-15T01:14:40.879+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-15T01:17:00.092+0000] {python.py:237} INFO - Done. Returned value was:                         date    open    high     low   close      volume symbol
+0 2024-11-16 01:16:59.855459  165.93  169.77  163.35  165.11  10950091.0   QCOM
+1 2024-11-17 01:16:59.855585  167.43  171.55  164.90  166.81  10494958.0   QCOM
+2 2024-11-18 01:16:59.855595  168.70  172.41  165.79  167.14   9225328.0   QCOM
+3 2024-11-19 01:16:59.855599  168.43  171.89  165.02  165.71   8587084.0   QCOM
+4 2024-11-20 01:16:59.855603  167.02  169.28  164.13  165.02   8950284.0   QCOM
+5 2024-11-21 01:16:59.855607  166.07  167.43  163.53  164.65   8850878.0   QCOM
+6 2024-11-22 01:16:59.855610  165.79  167.46  163.20  164.78   9393463.0   QCOM
+[2024-11-15T01:17:00.409+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-15T01:17:02.083+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=stock_price_analytics_extended, task_id=predictNext7Days, run_id=scheduled__2024-11-14T00:00:00+00:00, execution_date=20241114T000000, start_date=20241115T011437, end_date=20241115T011702
+[2024-11-15T01:17:02.909+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-15T01:17:04.212+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-15T01:17:04.273+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

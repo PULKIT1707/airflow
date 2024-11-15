@@ -1,0 +1,45 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'stocks_mau'
+version: '1.0.0'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'stocks_mau'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+
+require-dbt-version: ">=1.0.0"
+
+models:
+  stocks_mau:
+    input:  # This refers to the 'input' folder under 'models/stock_prices/input'
+      +materialized: incremental  # Apply incremental materialization to all models in the 'input' folder
+      +unique_key: ['date', 'symbol']
+
+# models:
+#   stock_prices:  # This matches the top-level project name
+#     input:  # This refers to the 'input' folder under 'models/stock_prices/input'
+#       +materialized: incremental  # Apply incremental materialization to all models in the 'input' folder
+#       +unique_key: ['date', 'symbol']  # You can specify a unique key if required for incremental logic

@@ -1,0 +1,1487 @@
+[2024-11-15T05:42:43.314+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-15T05:42:43.431+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: YfinanceToSnowflake.load manual__2024-11-15T05:42:01.376136+00:00 [queued]>
+[2024-11-15T05:42:43.455+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: YfinanceToSnowflake.load manual__2024-11-15T05:42:01.376136+00:00 [queued]>
+[2024-11-15T05:42:43.460+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-11-15T05:42:43.585+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load> on 2024-11-15 05:42:01.376136+00:00
+[2024-11-15T05:42:43.828+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=20098) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-15T05:42:43.834+0000] {standard_task_runner.py:63} INFO - Started process 20120 to run task
+[2024-11-15T05:42:43.831+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'YfinanceToSnowflake', 'load', 'manual__2024-11-15T05:42:01.376136+00:00', '--job-id', '376', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmpbsoup0j6']
+[2024-11-15T05:42:43.839+0000] {standard_task_runner.py:91} INFO - Job 376: Subtask load
+[2024-11-15T05:42:44.097+0000] {task_command.py:426} INFO - Running <TaskInstance: YfinanceToSnowflake.load manual__2024-11-15T05:42:01.376136+00:00 [running]> on host 5bbe89177473
+[2024-11-15T05:42:49.995+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='YfinanceToSnowflake' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T05:42:01.376136+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T05:42:01.376136+00:00'
+[2024-11-15T05:42:50.000+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-15T05:42:50.057+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-11-15T05:42:50.074+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.0, Python Version: 3.12.3, Platform: Linux-6.10.11-linuxkit-x86_64-with-glibc2.36
+[2024-11-15T05:42:50.094+0000] {connection.py:1239} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-11-15T05:42:53.923+0000] {logging_mixin.py:188} INFO - inside load:                         date        open  ...  Stock Splits  symbol
+0  2024-08-19 00:00:00-04:00  225.471943  ...           0.0    AAPL
+1  2024-08-20 00:00:00-04:00  225.521886  ...           0.0    AAPL
+2  2024-08-21 00:00:00-04:00  226.271063  ...           0.0    AAPL
+3  2024-08-22 00:00:00-04:00  227.539661  ...           0.0    AAPL
+4  2024-08-23 00:00:00-04:00  225.412002  ...           0.0    AAPL
+..                       ...         ...  ...           ...     ...
+58 2024-11-08 00:00:00-05:00  227.169998  ...           0.0    AAPL
+59 2024-11-11 00:00:00-05:00  225.000000  ...           0.0    AAPL
+60 2024-11-12 00:00:00-05:00  224.550003  ...           0.0    AAPL
+61 2024-11-13 00:00:00-05:00  224.009995  ...           0.0    AAPL
+62 2024-11-14 00:00:00-05:00  225.020004  ...           0.0    AAPL
+
+[63 rows x 9 columns]
+[2024-11-15T05:42:54.205+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-15T05:42:54.413+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-15T05:42:54.430+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-19' AS date,
+                       225.47 AS open,
+                       225.74 AS high,
+                       222.79 AS low,
+                       225.64 AS close,
+                       40687800 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:55.182+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-20' AS date,
+                       225.52 AS open,
+                       226.92 AS high,
+                       225.2 AS low,
+                       226.26 AS close,
+                       30299000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:56.210+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-21' AS date,
+                       226.27 AS open,
+                       227.73 AS high,
+                       224.8 AS low,
+                       226.15 AS close,
+                       34765500 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:56.802+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-22' AS date,
+                       227.54 AS open,
+                       228.09 AS high,
+                       223.65 AS low,
+                       224.28 AS close,
+                       43695300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:57.518+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-23' AS date,
+                       225.41 AS open,
+                       227.97 AS high,
+                       224.08 AS low,
+                       226.59 AS close,
+                       38677300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:58.301+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-26' AS date,
+                       226.51 AS open,
+                       227.03 AS high,
+                       223.64 AS low,
+                       226.93 AS close,
+                       30602200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:58.946+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-27' AS date,
+                       225.75 AS open,
+                       228.6 AS high,
+                       224.64 AS low,
+                       227.78 AS close,
+                       35934600 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:42:59.863+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-28' AS date,
+                       227.67 AS open,
+                       229.61 AS high,
+                       225.43 AS low,
+                       226.24 AS close,
+                       38052200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:00.474+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-29' AS date,
+                       229.85 AS open,
+                       232.66 AS high,
+                       228.63 AS low,
+                       229.54 AS close,
+                       51906300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:01.234+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-08-30' AS date,
+                       229.94 AS open,
+                       230.15 AS high,
+                       227.23 AS low,
+                       228.75 AS close,
+                       52990800 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:02.076+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-03' AS date,
+                       228.3 AS open,
+                       228.75 AS high,
+                       220.93 AS low,
+                       222.53 AS close,
+                       50190600 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:02.961+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-04' AS date,
+                       221.42 AS open,
+                       221.54 AS high,
+                       217.24 AS low,
+                       220.61 AS close,
+                       43840200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:03.935+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-05' AS date,
+                       221.39 AS open,
+                       225.23 AS high,
+                       221.28 AS low,
+                       222.14 AS close,
+                       36615400 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:04.874+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-06' AS date,
+                       223.7 AS open,
+                       224.99 AS high,
+                       219.53 AS low,
+                       220.58 AS close,
+                       48423000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:05.860+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-09' AS date,
+                       220.58 AS open,
+                       221.03 AS high,
+                       216.47 AS low,
+                       220.67 AS close,
+                       67180000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:06.656+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-10' AS date,
+                       218.68 AS open,
+                       221.24 AS high,
+                       216.49 AS low,
+                       219.87 AS close,
+                       51591000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:07.549+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-11' AS date,
+                       221.22 AS open,
+                       222.84 AS high,
+                       217.65 AS low,
+                       222.42 AS close,
+                       44587100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:08.572+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-12' AS date,
+                       222.26 AS open,
+                       223.3 AS high,
+                       219.58 AS low,
+                       222.53 AS close,
+                       37498200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:09.479+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-13' AS date,
+                       223.33 AS open,
+                       223.79 AS high,
+                       221.67 AS low,
+                       222.26 AS close,
+                       36766600 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:10.327+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-16' AS date,
+                       216.3 AS open,
+                       216.98 AS high,
+                       213.68 AS low,
+                       216.08 AS close,
+                       59357400 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:11.853+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-17' AS date,
+                       215.51 AS open,
+                       216.66 AS high,
+                       214.26 AS low,
+                       216.55 AS close,
+                       45519300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:12.771+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-18' AS date,
+                       217.31 AS open,
+                       222.47 AS high,
+                       217.3 AS low,
+                       220.45 AS close,
+                       59894900 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:13.378+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-19' AS date,
+                       224.74 AS open,
+                       229.57 AS high,
+                       224.38 AS low,
+                       228.62 AS close,
+                       66781300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:13.992+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-20' AS date,
+                       229.72 AS open,
+                       232.83 AS high,
+                       227.37 AS low,
+                       227.95 AS close,
+                       318679900 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:14.912+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-23' AS date,
+                       227.09 AS open,
+                       229.2 AS high,
+                       225.56 AS low,
+                       226.22 AS close,
+                       54146000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:15.527+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-24' AS date,
+                       228.4 AS open,
+                       229.1 AS high,
+                       225.48 AS low,
+                       227.12 AS close,
+                       43556100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:16.450+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-25' AS date,
+                       224.68 AS open,
+                       227.04 AS high,
+                       223.77 AS low,
+                       226.12 AS close,
+                       42308700 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:17.230+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-26' AS date,
+                       227.05 AS open,
+                       228.25 AS high,
+                       225.16 AS low,
+                       227.27 AS close,
+                       36636700 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:17.997+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-27' AS date,
+                       228.21 AS open,
+                       229.27 AS high,
+                       227.05 AS low,
+                       227.54 AS close,
+                       34026000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:18.604+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-09-30' AS date,
+                       229.79 AS open,
+                       232.74 AS high,
+                       229.4 AS low,
+                       232.74 AS close,
+                       54541900 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:19.554+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-01' AS date,
+                       229.27 AS open,
+                       229.4 AS high,
+                       223.49 AS low,
+                       225.96 AS close,
+                       63285000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:20.449+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-02' AS date,
+                       225.64 AS open,
+                       227.12 AS high,
+                       222.77 AS low,
+                       226.53 AS close,
+                       32880600 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:21.247+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-03' AS date,
+                       224.89 AS open,
+                       226.56 AS high,
+                       223.07 AS low,
+                       225.42 AS close,
+                       34044200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:22.114+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-04' AS date,
+                       227.65 AS open,
+                       227.75 AS high,
+                       223.88 AS low,
+                       226.55 AS close,
+                       37245100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:22.904+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-07' AS date,
+                       224.25 AS open,
+                       225.44 AS high,
+                       221.09 AS low,
+                       221.45 AS close,
+                       39505400 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:23.825+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-08' AS date,
+                       224.05 AS open,
+                       225.73 AS high,
+                       223.0 AS low,
+                       225.52 AS close,
+                       31855700 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:24.742+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-09' AS date,
+                       224.98 AS open,
+                       229.5 AS high,
+                       224.58 AS low,
+                       229.29 AS close,
+                       33591100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:25.520+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-10' AS date,
+                       227.53 AS open,
+                       229.25 AS high,
+                       226.92 AS low,
+                       228.79 AS close,
+                       28183500 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:26.621+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-11' AS date,
+                       229.05 AS open,
+                       229.16 AS high,
+                       227.09 AS low,
+                       227.3 AS close,
+                       31759200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:27.241+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-14' AS date,
+                       228.45 AS open,
+                       231.48 AS high,
+                       228.35 AS low,
+                       231.05 AS close,
+                       39882100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:28.151+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-15' AS date,
+                       233.35 AS open,
+                       237.23 AS high,
+                       232.11 AS low,
+                       233.59 AS close,
+                       64751400 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:28.774+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-16' AS date,
+                       231.35 AS open,
+                       231.86 AS high,
+                       229.59 AS low,
+                       231.53 AS close,
+                       34082200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:29.695+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-17' AS date,
+                       233.17 AS open,
+                       233.59 AS high,
+                       230.27 AS low,
+                       231.89 AS close,
+                       32993800 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:30.648+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-18' AS date,
+                       235.92 AS open,
+                       235.92 AS high,
+                       233.75 AS low,
+                       234.74 AS close,
+                       46431500 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:31.280+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-21' AS date,
+                       234.19 AS open,
+                       236.59 AS high,
+                       234.19 AS low,
+                       236.22 AS close,
+                       36254500 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:31.854+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-22' AS date,
+                       233.63 AS open,
+                       235.96 AS high,
+                       232.34 AS low,
+                       235.6 AS close,
+                       38846600 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:32.524+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-23' AS date,
+                       233.82 AS open,
+                       234.88 AS high,
+                       227.51 AS low,
+                       230.51 AS close,
+                       52287000 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:33.384+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-24' AS date,
+                       229.73 AS open,
+                       230.57 AS high,
+                       228.16 AS low,
+                       230.32 AS close,
+                       31109500 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:34.105+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-25' AS date,
+                       229.49 AS open,
+                       232.96 AS high,
+                       229.32 AS low,
+                       231.16 AS close,
+                       38802300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:34.988+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-28' AS date,
+                       233.06 AS open,
+                       234.47 AS high,
+                       232.29 AS low,
+                       233.14 AS close,
+                       36087100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:36.253+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-29' AS date,
+                       232.84 AS open,
+                       234.07 AS high,
+                       232.06 AS low,
+                       233.41 AS close,
+                       35417200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:37.150+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-30' AS date,
+                       232.35 AS open,
+                       233.21 AS high,
+                       229.3 AS low,
+                       229.85 AS close,
+                       47070900 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:38.211+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-10-31' AS date,
+                       229.09 AS open,
+                       229.58 AS high,
+                       225.12 AS low,
+                       225.66 AS close,
+                       64370100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:39.233+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-01' AS date,
+                       220.73 AS open,
+                       225.1 AS high,
+                       220.03 AS low,
+                       222.67 AS close,
+                       65276700 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:40.411+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-04' AS date,
+                       220.75 AS open,
+                       222.55 AS high,
+                       219.47 AS low,
+                       221.77 AS close,
+                       44944500 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:41.751+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-05' AS date,
+                       221.56 AS open,
+                       223.7 AS high,
+                       220.9 AS low,
+                       223.2 AS close,
+                       28111300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:43.125+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-06' AS date,
+                       222.37 AS open,
+                       225.82 AS high,
+                       220.95 AS low,
+                       222.48 AS close,
+                       54561100 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:43.856+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-07' AS date,
+                       224.38 AS open,
+                       227.63 AS high,
+                       224.32 AS low,
+                       227.23 AS close,
+                       42137700 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:44.834+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-08' AS date,
+                       227.17 AS open,
+                       228.66 AS high,
+                       226.41 AS low,
+                       226.96 AS close,
+                       38328800 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:46.195+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-11' AS date,
+                       225.0 AS open,
+                       225.7 AS high,
+                       221.5 AS low,
+                       224.23 AS close,
+                       42005600 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:47.385+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-12' AS date,
+                       224.55 AS open,
+                       225.59 AS high,
+                       223.36 AS low,
+                       224.23 AS close,
+                       40398300 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:48.402+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-13' AS date,
+                       224.01 AS open,
+                       226.65 AS high,
+                       222.76 AS low,
+                       225.12 AS close,
+                       48566200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:50.443+0000] {logging_mixin.py:188} INFO - Executing MERGE query: 
+            MERGE INTO stock_db.raw_data.stock_prices AS target
+            USING (
+                SELECT '2024-11-14' AS date,
+                       225.02 AS open,
+                       228.87 AS high,
+                       225.0 AS low,
+                       228.22 AS close,
+                       44880200 AS volume,
+                       'AAPL' AS symbol
+            ) AS source
+            ON target.date = source.date AND target.symbol = source.symbol
+            WHEN MATCHED THEN
+                UPDATE SET
+                    open = source.open,
+                    high = source.high,
+                    low = source.low,
+                    close = source.close,
+                    volume = source.volume
+            WHEN NOT MATCHED THEN
+                INSERT (date, open, high, low, close, volume, symbol)
+                VALUES (source.date, source.open, source.high, source.low, source.close, source.volume, source.symbol);
+            
+[2024-11-15T05:43:56.941+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-11-15T05:43:57.340+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-15T05:43:57.356+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-15T05:44:03.499+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=YfinanceToSnowflake, task_id=load, run_id=manual__2024-11-15T05:42:01.376136+00:00, execution_date=20241115T054201, start_date=20241115T054243, end_date=20241115T054403
+[2024-11-15T05:44:09.398+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-15T05:44:12.862+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-15T05:44:13.284+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

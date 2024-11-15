@@ -1,0 +1,41 @@
+[2024-11-15T04:50:59.702+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-15T04:51:00.247+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: YfinanceToSnowflake.dbt_test manual__2024-11-15T04:49:25.455781+00:00 [queued]>
+[2024-11-15T04:51:00.305+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: YfinanceToSnowflake.dbt_test manual__2024-11-15T04:49:25.455781+00:00 [queued]>
+[2024-11-15T04:51:00.373+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-11-15T04:51:00.594+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_test> on 2024-11-15 04:49:25.455781+00:00
+[2024-11-15T04:51:00.808+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=17546) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-15T04:51:00.880+0000] {standard_task_runner.py:63} INFO - Started process 17555 to run task
+[2024-11-15T04:51:00.853+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'YfinanceToSnowflake', 'dbt_test', 'manual__2024-11-15T04:49:25.455781+00:00', '--job-id', '352', '--raw', '--subdir', 'DAGS_FOLDER/yfinance_to_snowflake.py', '--cfg-path', '/tmp/tmpggegh1kl']
+[2024-11-15T04:51:00.919+0000] {standard_task_runner.py:91} INFO - Job 352: Subtask dbt_test
+[2024-11-15T04:51:01.728+0000] {task_command.py:426} INFO - Running <TaskInstance: YfinanceToSnowflake.dbt_test manual__2024-11-15T04:49:25.455781+00:00 [running]> on host 5bbe89177473
+[2024-11-15T04:51:04.749+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='YfinanceToSnowflake' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2024-11-15T04:49:25.455781+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-15T04:49:25.455781+00:00'
+[2024-11-15T04:51:04.796+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-15T04:51:04.813+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-11-15T04:51:04.858+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/stocks_mau && dbt test --profiles-dir /opt/***/stocks_mau']
+[2024-11-15T04:51:05.253+0000] {subprocess.py:86} INFO - Output:
+[2024-11-15T04:51:26.454+0000] {subprocess.py:93} INFO - [0m04:51:26  Running with dbt=1.8.7
+[2024-11-15T04:51:37.251+0000] {subprocess.py:93} INFO - [0m04:51:37  Registered adapter: snowflake=1.8.4
+[2024-11-15T04:51:39.870+0000] {subprocess.py:93} INFO - [0m04:51:39  Found 2 snapshots, 2 models, 4 data tests, 1 source, 459 macros
+[2024-11-15T04:51:39.902+0000] {subprocess.py:93} INFO - [0m04:51:39
+[2024-11-15T04:51:41.139+0000] {subprocess.py:93} INFO - [0m04:51:41  Concurrency: 1 threads (target='dev')
+[2024-11-15T04:51:41.150+0000] {subprocess.py:93} INFO - [0m04:51:41
+[2024-11-15T04:51:41.240+0000] {subprocess.py:93} INFO - [0m04:51:41  1 of 4 START test not_null_moving_average_date ................................. [RUN]
+[2024-11-15T04:51:43.054+0000] {subprocess.py:93} INFO - [0m04:51:43  1 of 4 PASS not_null_moving_average_date ....................................... [[32mPASS[0m in 1.81s]
+[2024-11-15T04:51:43.103+0000] {subprocess.py:93} INFO - [0m04:51:43  2 of 4 START test not_null_moving_average_symbol ............................... [RUN]
+[2024-11-15T04:51:44.145+0000] {subprocess.py:93} INFO - [0m04:51:44  2 of 4 PASS not_null_moving_average_symbol ..................................... [[32mPASS[0m in 1.03s]
+[2024-11-15T04:51:44.162+0000] {subprocess.py:93} INFO - [0m04:51:44  3 of 4 START test not_null_rsi_date ............................................ [RUN]
+[2024-11-15T04:51:45.384+0000] {subprocess.py:93} INFO - [0m04:51:45  3 of 4 PASS not_null_rsi_date .................................................. [[32mPASS[0m in 1.21s]
+[2024-11-15T04:51:45.419+0000] {subprocess.py:93} INFO - [0m04:51:45  4 of 4 START test not_null_rsi_symbol .......................................... [RUN]
+[2024-11-15T04:51:46.853+0000] {subprocess.py:93} INFO - [0m04:51:46  4 of 4 PASS not_null_rsi_symbol ................................................ [[32mPASS[0m in 1.43s]
+[2024-11-15T04:51:46.923+0000] {subprocess.py:93} INFO - [0m04:51:46
+[2024-11-15T04:51:46.936+0000] {subprocess.py:93} INFO - [0m04:51:46  Finished running 4 data tests in 0 hours 0 minutes and 7.01 seconds (7.01s).
+[2024-11-15T04:51:48.015+0000] {subprocess.py:93} INFO - [0m04:51:48
+[2024-11-15T04:51:48.019+0000] {subprocess.py:93} INFO - [0m04:51:48  [32mCompleted successfully[0m
+[2024-11-15T04:51:48.030+0000] {subprocess.py:93} INFO - [0m04:51:48
+[2024-11-15T04:51:48.084+0000] {subprocess.py:93} INFO - [0m04:51:48  Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+[2024-11-15T04:51:52.232+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-11-15T04:51:52.237+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-15T04:51:52.387+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=YfinanceToSnowflake, task_id=dbt_test, run_id=manual__2024-11-15T04:49:25.455781+00:00, execution_date=20241115T044925, start_date=20241115T045100, end_date=20241115T045152
+[2024-11-15T04:51:52.646+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-15T04:51:52.745+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-15T04:51:52.774+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

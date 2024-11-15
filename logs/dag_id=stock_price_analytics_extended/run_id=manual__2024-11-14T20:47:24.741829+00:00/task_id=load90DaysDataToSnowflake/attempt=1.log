@@ -1,0 +1,17 @@
+[2024-11-14T20:48:28.100+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-14T20:48:28.431+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_price_analytics_extended.load90DaysDataToSnowflake manual__2024-11-14T20:47:24.741829+00:00 [queued]>
+[2024-11-14T20:48:28.629+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_price_analytics_extended.load90DaysDataToSnowflake manual__2024-11-14T20:47:24.741829+00:00 [queued]>
+[2024-11-14T20:48:28.631+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-14T20:48:28.793+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load90DaysDataToSnowflake> on 2024-11-14 20:47:24.741829+00:00
+[2024-11-14T20:48:28.856+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_price_analytics_extended', 'load90DaysDataToSnowflake', 'manual__2024-11-14T20:47:24.741829+00:00', '--job-id', '262', '--raw', '--subdir', 'DAGS_FOLDER/Conn_Forcasting_DagFile.py', '--cfg-path', '/tmp/tmpfjpyzkaw']
+[2024-11-14T20:48:28.888+0000] {standard_task_runner.py:91} INFO - Job 262: Subtask load90DaysDataToSnowflake
+[2024-11-14T20:48:28.934+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1350) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-11-14T20:48:28.936+0000] {standard_task_runner.py:63} INFO - Started process 1382 to run task
+[2024-11-14T20:48:29.343+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_price_analytics_extended.load90DaysDataToSnowflake manual__2024-11-14T20:47:24.741829+00:00 [running]> on host 885fea738fe5
+[2024-11-14T20:48:32.919+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_price_analytics_extended' AIRFLOW_CTX_TASK_ID='load90DaysDataToSnowflake' AIRFLOW_CTX_EXECUTION_DATE='2024-11-14T20:47:24.741829+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-14T20:47:24.741829+00:00'
+[2024-11-14T20:48:32.932+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-14T20:48:32.947+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-14T20:48:32.959+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-14T20:48:33.043+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=stock_price_analytics_extended, task_id=load90DaysDataToSnowflake, run_id=manual__2024-11-14T20:47:24.741829+00:00, execution_date=20241114T204724, start_date=20241114T204828, end_date=20241114T204833
+[2024-11-14T20:48:33.386+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-14T20:48:33.578+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

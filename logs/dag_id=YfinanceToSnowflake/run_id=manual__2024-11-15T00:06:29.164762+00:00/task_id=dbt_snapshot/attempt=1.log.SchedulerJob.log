@@ -1,0 +1,1 @@
+[2024-11-15T00:07:31.726+0000] {task_context_logger.py:104} ERROR - Executor reports task instance <TaskInstance: YfinanceToSnowflake.dbt_snapshot manual__2024-11-15T00:06:29.164762+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

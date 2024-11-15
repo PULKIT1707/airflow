@@ -1,0 +1,1 @@
+[2024-11-14T12:26:11.628+0000] {task_context_logger.py:104} ERROR - Executor reports task instance <TaskInstance: stock_price_analytics_extended.run_all_dbt_models manual__2024-11-14T12:16:42.919161+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?
